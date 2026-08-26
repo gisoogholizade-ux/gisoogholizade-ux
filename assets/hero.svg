@@ -1,0 +1,22 @@
+<svg width="1200" height="320" viewBox="0 0 1200 320" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1200" y2="320" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0F172A"/>
+      <stop offset="0.55" stop-color="#111827"/>
+      <stop offset="1" stop-color="#1E293B"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="230" y1="90" x2="930" y2="250" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#22C55E"/>
+      <stop offset="1" stop-color="#38BDF8"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="320" rx="28" fill="url(#g)"/>
+  <circle cx="1060" cy="80" r="180" fill="#22C55E" fill-opacity="0.06"/>
+  <circle cx="1060" cy="80" r="115" fill="#38BDF8" fill-opacity="0.06"/>
+  <rect x="70" y="64" width="12" height="190" rx="6" fill="url(#accent)"/>
+  <text x="120" y="125" fill="#F8FAFC" font-family="Arial, Helvetica, sans-serif" font-size="54" font-weight="700">Gisoo Gholizade</text>
+  <text x="120" y="176" fill="#CBD5E1" font-family="Arial, Helvetica, sans-serif" font-size="25" font-weight="500">Java Backend Developer · Spring Boot · Business Systems</text>
+  <text x="120" y="223" fill="#94A3B8" font-family="Arial, Helvetica, sans-serif" font-size="20">Secure APIs · Marketplace Workflows · Databases · Production Features</text>
+  <rect x="120" y="250" width="300" height="38" rx="19" fill="#0B1220" stroke="#334155"/>
+  <text x="150" y="276" fill="#86EFAC" font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="700">AVAILABLE FOR FREELANCE PROJECTS</text>
+</svg>
