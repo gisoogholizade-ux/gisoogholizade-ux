@@ -7,7 +7,7 @@ function ensure(){
   const nav=document.createElement('div');
   nav.id='ll42QuickNav';
   nav.className='ll42QuickNav';
-  nav.innerHTML='<button class="btn" data-social-go="avatar">🎨 Avatar</button><button class="btn" data-social-go="partners">🤝 Find partners</button>';
+  nav.innerHTML='<button class="btn" data-social-go="avatar">Avatar</button><button class="btn" data-social-go="partners">Find partners</button>';
   const dash=$('#ll41DashboardBtn');
   if(dash)dash.after(nav); else p.insertBefore(nav,p.firstChild);
 }
