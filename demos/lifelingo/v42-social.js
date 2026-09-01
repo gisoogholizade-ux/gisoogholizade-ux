@@ -2,9 +2,10 @@
 const $=s=>document.querySelector(s);
 const user=()=>{try{return JSON.parse(localStorage.getItem('lifelingo_user')||'null')}catch{return null}};
 const key=()=>`lifelingo_social_${String(user()?.email||'guest').toLowerCase()}`;
-const sprite='./assets/avatar-sprite.webp?v=fbc63aba';
+const sprite='./assets/avatar-sprite.jpg?v=fix033ac235';
 const avatars=Array.from({length:20},(_,i)=>({id:i,cat:i<10?'girls':i<15?'boys':'animals'}));
-const face=(i,cls='')=>{const c=i%5,r=Math.floor(i/5);return `<span class="ll43Face ${cls}"><img src="${sprite}" alt="" style="--c:${c};--r:${r}" loading="eager" decoding="async"></span>`};
+const pos=i=>{const c=i%5,r=Math.floor(i/5);return `${c*25}% ${r*(100/3)}%`};
+const face=(i,cls='')=>`<span class="ll43Face ${cls}" style="--avatar-url:url('${sprite}');--avatar-pos:${pos(i)}"></span>`;
 const load=()=>{try{return Object.assign({avatar:0,requests:{}},JSON.parse(localStorage.getItem(key())||'{}'))}catch{return{avatar:0,requests:{}}}};
 const save=s=>localStorage.setItem(key(),JSON.stringify(s));
 const displayName=()=>{const u=user()||{};return u.name||u.displayName||u.fullName||(u.email?String(u.email).split('@')[0]:'You')};
