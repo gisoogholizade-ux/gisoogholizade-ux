@@ -3,7 +3,7 @@ const $=s=>document.querySelector(s);
 const user=()=>{try{return JSON.parse(localStorage.getItem('lifelingo_user')||'null')}catch{return null}};
 const key=()=>`lifelingo_social_${String(user()?.email||'guest').toLowerCase()}`;
 const avatars=[0,1,2,3,4].map(id=>({id,cat:'girls'})).concat([10,11,12,13,14].map(id=>({id,cat:'boys'})));
-const VERSION=4;
+const VERSION=5;
 const load=()=>{try{const raw=JSON.parse(localStorage.getItem(key())||'{}');const s=Object.assign({avatar:0,requests:{},surpriseUsed:false,surpriseGender:null,surpriseVersion:VERSION},raw);if(raw.surpriseVersion!==VERSION){s.surpriseUsed=false;s.surpriseGender=null;s.surpriseVersion=VERSION;save(s)}return s}catch{return{avatar:0,requests:{},surpriseUsed:false,surpriseGender:null,surpriseVersion:VERSION}}};
 const save=s=>localStorage.setItem(key(),JSON.stringify(s));
 const displayName=()=>{const u=user()||{};return u.name||u.displayName||u.fullName||(u.email?String(u.email).split('@')[0]:'You')};
