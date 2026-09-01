@@ -2,9 +2,9 @@
 const $=s=>document.querySelector(s);
 const user=()=>{try{return JSON.parse(localStorage.getItem('lifelingo_user')||'null')}catch{return null}};
 const key=()=>`lifelingo_social_${String(user()?.email||'guest').toLowerCase()}`;
-const SPRITE='./assets/avatar-hq-nohijab-v2.jpg?v=6dbe65b6';
+const SPRITE='./assets/avatar-hq-nohijab-v3.jpg?v=8c35e76b';
 const avatars=[0,1,2,3,4].map(id=>({id,cat:'girls'})).concat([5,6,7,8,9].map(id=>({id,cat:'boys'})));
-const VERSION=9;
+const VERSION=10;
 const save=s=>localStorage.setItem(key(),JSON.stringify(s));
 const load=()=>{try{const raw=JSON.parse(localStorage.getItem(key())||'{}');const s=Object.assign({avatar:0,surpriseUsed:false,surpriseGender:null,surpriseVersion:VERSION},raw);if(raw.surpriseVersion!==VERSION){s.surpriseUsed=false;s.surpriseGender=null;s.surpriseVersion=VERSION;save(s)}return s}catch{return{avatar:0,surpriseUsed:false,surpriseGender:null,surpriseVersion:VERSION}}};
 const displayName=()=>{const u=user()||{};return u.name||u.displayName||u.fullName||(u.email?String(u.email).split('@')[0]:'You')};
