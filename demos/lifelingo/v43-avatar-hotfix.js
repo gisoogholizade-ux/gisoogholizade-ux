@@ -1,5 +1,5 @@
 (()=>{
-  const SPRITE='/gisoogholizade-ux/demos/lifelingo/assets/avatar-sprite.jpg?v=20260901-2';
+  const SPRITE='https://raw.githubusercontent.com/gisoogholizade-ux/gisoogholizade-ux/main/demos/lifelingo/assets/avatar-sprite.jpg?v=20260901-3';
   function crop(el,i){
     if(!el) return;
     i=Number(i)||0;
@@ -7,7 +7,9 @@
     if(el.dataset.avatarFixed===String(i) && el.querySelector('img')) return;
     el.dataset.avatarFixed=String(i);
     el.style.backgroundImage='none';
-    el.innerHTML=`<img src="${SPRITE}" alt="" draggable="false" style="position:absolute;display:block;max-width:none;width:500%;height:400%;left:${-c*100}%;top:${-r*100}%;object-fit:fill;">`;
+    el.style.position='relative';
+    el.style.overflow='hidden';
+    el.innerHTML=`<img src="${SPRITE}" alt="avatar" draggable="false" referrerpolicy="no-referrer" style="position:absolute;display:block;max-width:none!important;width:500%!important;height:400%!important;left:${-c*100}%;top:${-r*100}%;object-fit:fill;">`;
   }
   function apply(){
     document.querySelectorAll('.ll42Preset[data-avatar]').forEach(btn=>crop(btn.querySelector('.ll43Face'),btn.dataset.avatar));
