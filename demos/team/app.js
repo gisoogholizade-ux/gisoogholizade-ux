@@ -9,3 +9,6 @@ const form=document.querySelector('#estimator');if(form){const outputDays=docume
 const copy=document.querySelector('[data-copy-email]');const toast=document.querySelector('.copyNote');if(copy){copy.addEventListener('click',async()=>{try{await navigator.clipboard.writeText('gholizadegisoo@gmail.com');toast.classList.add('show');setTimeout(()=>toast.classList.remove('show'),1600)}catch{location.href='mailto:gholizadegisoo@gmail.com'}})}
 
 document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',()=>{const menu=document.querySelector('.navlinks');if(menu)menu.classList.remove('open')}));
+
+// Keep the real marketplace inside the portfolio instead of sending visitors to the production site.
+const umasilLink=document.querySelector('a[href="https://umasil.com"]');if(umasilLink){umasilLink.href='umasil.html';umasilLink.removeAttribute('target');umasilLink.removeAttribute('rel');umasilLink.textContent='View case study →'}
