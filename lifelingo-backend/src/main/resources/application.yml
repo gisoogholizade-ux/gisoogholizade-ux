@@ -1,0 +1,17 @@
+server:
+  port: ${PORT:8080}
+spring:
+  datasource:
+    url: ${DB_URL:jdbc:mysql://localhost:3306/lifelingo?createDatabaseIfNotExist=true&useSSL=false&serverTimezone=UTC}
+    username: ${DB_USER:root}
+    password: ${DB_PASSWORD:root}
+  jpa:
+    hibernate:
+      ddl-auto: update
+    open-in-view: false
+    properties:
+      hibernate:
+        format_sql: true
+lifelingo:
+  jwt-secret: ${JWT_SECRET:change-this-development-secret-change-this-development-secret}
+  cors-origin: ${CORS_ORIGIN:https://gisoogholizade-ux.github.io}
