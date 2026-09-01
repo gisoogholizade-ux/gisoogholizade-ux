@@ -1,0 +1,36 @@
+services:
+  mysql:
+    image: mysql:8.4
+    environment:
+      MYSQL_DATABASE: lifelingo
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - "3306:3306"
+    volumes:
+      - lifelingo_mysql:/var/lib/mysql
+    healthcheck:
+      test: ["CMD","mysqladmin","ping","-h","localhost","-proot"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+  api:
+    image: maven:3.9.9-eclipse-temurin-21
+    working_dir: /app
+    command: mvn spring-boot:run
+    volumes:
+      - ./:/app
+      - maven_cache:/root/.m2
+    ports:
+      - "8080:8080"
+    environment:
+      DB_URL: jdbc:mysql://mysql:3306/lifelingo?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+      DB_USER: root
+      DB_PASSWORD: root
+      JWT_SECRET: change-this-local-secret-change-this-local-secret-123456
+      CORS_ORIGIN: https://gisoogholizade-ux.github.io
+    depends_on:
+      mysql:
+        condition: service_healthy
+volumes:
+  lifelingo_mysql:
+  maven_cache:
