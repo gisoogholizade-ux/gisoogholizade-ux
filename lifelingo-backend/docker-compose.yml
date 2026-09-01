@@ -1,15 +1,16 @@
 services:
-  mysql:
-    image: mysql:8.4
+  postgres:
+    image: postgres:16-alpine
     environment:
-      MYSQL_DATABASE: lifelingo
-      MYSQL_ROOT_PASSWORD: root
+      POSTGRES_DB: lifelingo
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
     ports:
-      - "3306:3306"
+      - "5432:5432"
     volumes:
-      - lifelingo_mysql:/var/lib/mysql
+      - lifelingo_postgres:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD","mysqladmin","ping","-h","localhost","-proot"]
+      test: ["CMD-SHELL","pg_isready -U postgres -d lifelingo"]
       interval: 5s
       timeout: 5s
       retries: 20
@@ -23,14 +24,14 @@ services:
     ports:
       - "8080:8080"
     environment:
-      DB_URL: jdbc:mysql://mysql:3306/lifelingo?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
-      DB_USER: root
-      DB_PASSWORD: root
+      DB_URL: jdbc:postgresql://postgres:5432/lifelingo
+      DB_USER: postgres
+      DB_PASSWORD: postgres
       JWT_SECRET: change-this-local-secret-change-this-local-secret-123456
       CORS_ORIGIN: https://gisoogholizade-ux.github.io
     depends_on:
-      mysql:
+      postgres:
         condition: service_healthy
 volumes:
-  lifelingo_mysql:
+  lifelingo_postgres:
   maven_cache:
