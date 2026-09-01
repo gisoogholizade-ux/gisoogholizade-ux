@@ -2,14 +2,14 @@
 const $=s=>document.querySelector(s);
 const user=()=>{try{return JSON.parse(localStorage.getItem('lifelingo_user')||'null')}catch{return null}};
 const key=()=>`lifelingo_social_${String(user()?.email||'guest').toLowerCase()}`;
-const SPRITE='./assets/avatar-sprite-v4-fixed.jpg?v=b65b4c01';
-const avatars=[0,1,2,3,4].map(id=>({id,cat:'girls'})).concat([5,6,7,8,9].map(id=>({id,cat:'boys'})));
-const VERSION=11;
+const SPRITE='./assets/avatar-sprite-v3.jpg?v=7e7ab00a';
+const avatars=[0,1,2,3,5].map(id=>({id,cat:'girls'})).concat([10,11,12,13,14].map(id=>({id,cat:'boys'})));
+const VERSION=12;
 const save=s=>localStorage.setItem(key(),JSON.stringify(s));
 const load=()=>{try{const raw=JSON.parse(localStorage.getItem(key())||'{}');const s=Object.assign({avatar:0,surpriseUsed:false,surpriseGender:null,surpriseVersion:VERSION},raw);if(raw.surpriseVersion!==VERSION){s.surpriseUsed=false;s.surpriseGender=null;s.surpriseVersion=VERSION;save(s)}return s}catch{return{avatar:0,surpriseUsed:false,surpriseGender:null,surpriseVersion:VERSION}}};
 const displayName=()=>{const u=user()||{};return u.name||u.displayName||u.fullName||(u.email?String(u.email).split('@')[0]:'You')};
 const byId=id=>avatars.find(a=>a.id===Number(id))||avatars[0];
-function faceStyle(i){const c=i%5,r=Math.floor(i/5);return `background-image:url('${SPRITE}');background-size:500% 200%;background-position:${c*25}% ${r*100}%;background-repeat:no-repeat;background-color:#0b1120`}
+function faceStyle(i){const c=i%5,r=Math.floor(i/5);return `background-image:url('${SPRITE}');background-size:500% 400%;background-position:${c*25}% ${r*(100/3)}%;background-repeat:no-repeat;background-color:#0b1120`}
 const face=(i,cls='')=>`<span class="ll43Face ${cls}" data-avatar-face="${i}" role="img" aria-label="LifeLingo avatar" style="display:block;overflow:hidden;${faceStyle(i)}"></span>`;
 function syncProfileButton(){const b=$('#profileBtn');if(!b||!user())return;const s=load();b.style.width='52px';b.style.height='52px';b.style.padding='3px';b.style.borderRadius='50%';b.style.overflow='hidden';b.style.verticalAlign='middle';b.style.display='inline-grid';b.style.placeItems='center';if(s.surpriseUsed){b.innerHTML=`<span style="display:block;width:100%;height:100%;border-radius:50%;${faceStyle(s.avatar)}"></span>`;b.setAttribute('aria-label','Open profile')}else{b.innerHTML='<span style="font-size:23px;font-weight:900;color:#c9a7ff">?</span>';b.setAttribute('aria-label','Open profile')}}
 function host(){const p=$('#profile');if(!p||!user())return null;let h=$('#ll42Social');if(!h){h=document.createElement('section');h.id='ll42Social';h.className='ll42Social';const a=$('#ll41Retention')||$('#ll41DailyProfile')||p.querySelector('.hub');a?.after(h)}return h}
