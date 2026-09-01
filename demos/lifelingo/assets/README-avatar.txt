@@ -1,0 +1,1 @@
+LifeLingo avatar assets
