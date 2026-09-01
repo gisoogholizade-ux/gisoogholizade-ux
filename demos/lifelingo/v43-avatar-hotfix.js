@@ -1,22 +1,31 @@
 (()=>{
-  const SPRITE='./assets/avatar-sprite-v3.jpg?v=7e7ab00a';
+  const SPRITE='./assets/avatar-human-hq.webp?v=e2fd75cc';
+  function mapIndex(i){
+    i=Number(i)||0;
+    if(i>=0&&i<=4)return {c:i,r:0};
+    if(i>=10&&i<=14)return {c:i-10,r:1};
+    return {c:0,r:0};
+  }
   function paint(el,i){
     if(!el)return;
-    i=Math.max(0,Math.min(19,Number(i)||0));
-    const key='v3-'+i;
-    if(el.dataset.avatarRenderKey===key && el.querySelector('img[data-ll-avatar-img]'))return;
+    i=Number(i)||0;
+    const {c,r}=mapIndex(i);
+    const key=`${i}-hq10`;
+    if(el.dataset.avatarRenderKey===key)return;
     el.dataset.avatarRenderKey=key;
     el.dataset.avatarFixed=String(i);
-    const c=i%5,r=Math.floor(i/5);
+    el.innerHTML='';
     el.style.position='relative';
     el.style.overflow='hidden';
-    el.style.background='none';
-    el.innerHTML=`<img data-ll-avatar-img src="${SPRITE}" alt="avatar" draggable="false" style="position:absolute;display:block;max-width:none!important;width:500%!important;height:400%!important;left:${-c*100}%;top:${-r*100}%;object-fit:fill;image-rendering:auto;pointer-events:none;user-select:none">`;
+    el.style.backgroundColor='#11182a';
+    el.style.backgroundImage=`url("${SPRITE}")`;
+    el.style.backgroundRepeat='no-repeat';
+    el.style.backgroundSize='500% 200%';
+    el.style.backgroundPosition=`${c*25}% ${r*100}%`;
+    el.style.imageRendering='auto';
   }
   function apply(){
     document.querySelectorAll('[data-avatar-face]').forEach(el=>paint(el,el.dataset.avatarFace));
-    document.querySelectorAll('.ll42Preset[data-avatar]').forEach(btn=>paint(btn.querySelector('.ll43Face'),btn.dataset.avatar));
-    document.querySelectorAll('.ll42PartnerIcon').forEach((el,n)=>paint(el,el.dataset.avatarFace!==undefined?el.dataset.avatarFace:[1,10,7][n]||0));
   }
   new MutationObserver(apply).observe(document.documentElement,{childList:true,subtree:true,attributes:true,attributeFilter:['data-avatar-face']});
   document.addEventListener('click',()=>setTimeout(apply,0));
