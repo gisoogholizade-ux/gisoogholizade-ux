@@ -1,0 +1,38 @@
+name: Sync LifeLingo to Pages
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/sync-lifelingo.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Pages repository
+        uses: actions/checkout@v4
+
+      - name: Clone standalone LifeLingo
+        run: git clone --depth 1 https://github.com/gisoogholizade-ux/lifelingo.git /tmp/lifelingo
+
+      - name: Sync app into demos/lifelingo
+        run: |
+          mkdir -p demos/lifelingo
+          rsync -a --delete \
+            --exclude='.git' \
+            --exclude='.github' \
+            --exclude='README.md' \
+            /tmp/lifelingo/ demos/lifelingo/
+
+      - name: Commit synced Pages build
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add demos/lifelingo
+          git diff --cached --quiet || git commit -m "Sync LifeLingo Pages build"
+          git push
