@@ -1,0 +1,29 @@
+/* Mobile layering hotfix */
+@media (max-width:600px){
+  .hero{display:flex!important;flex-direction:column!important;padding:24px 14px 34px!important;gap:22px!important}
+  .mobile-hero-copy{display:block!important;order:1!important}
+  .hero>.copy{display:none!important}
+  .visual{order:2!important;position:relative!important;overflow:visible!important;width:100%!important;min-height:0!important;padding:14px 12px 12px!important;border-radius:26px!important}
+  .stage{position:relative!important;z-index:2!important;height:245px!important;padding:50px 4px 8px!important;gap:8px!important;overflow:visible!important}
+  .bottle,.jar{z-index:3!important;flex:0 0 auto!important}
+  .sale{z-index:20!important;top:12px!important;left:12px!important;right:auto!important;transform:none!important;margin:0!important;pointer-events:none!important;background:#fff!important;box-shadow:0 10px 28px rgba(57,37,28,.16)!important}
+  .price{position:relative!important;z-index:10!important;margin-top:8px!important;background:rgba(255,255,255,.92)!important;backdrop-filter:blur(10px)!important}
+  .mobile-trust{display:grid!important;order:3!important;grid-template-columns:repeat(3,1fr)!important;border-top:1px solid var(--line)!important;padding-top:16px!important;gap:8px!important}
+  .mobile-trust div{display:flex!important;flex-direction:column!important}
+  .mobile-trust b{font-size:12px!important}.mobile-trust small{font-size:8px!important;color:var(--muted)!important}
+  .mobile-main-cta{width:100%!important;margin-top:18px!important;min-height:48px!important}
+}
+@media (max-width:430px){
+  .stage{height:228px!important;gap:6px!important;padding-top:48px!important}
+  .bottle{width:64px!important;height:156px!important}.green{height:144px!important}
+  .jar{width:82px!important;height:88px!important}
+  .bottle i{width:38px!important;height:26px!important;left:13px!important;top:-22px!important}
+  .jar i{width:70px!important;height:24px!important;left:6px!important;top:-19px!important}
+  .sale{top:10px!important;left:10px!important;font-size:16px!important;padding:7px 9px!important}
+  .price{grid-template-columns:1fr!important;gap:4px!important}.price div{text-align:right!important}
+}
+@media (max-width:360px){
+  .stage{height:214px!important;gap:5px!important}
+  .bottle{width:58px!important;height:146px!important}.green{height:134px!important}.jar{width:76px!important;height:82px!important}
+  .sale{font-size:15px!important}
+}
